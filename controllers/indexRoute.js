@@ -9,6 +9,9 @@ const restaurant = require('../models/restaurant')
 //------------------Render search results------------------------------//
 router.get('/', (req, res) => {
 
+  // get data from api
+  // render that data from the api
+
 //-request data from the api-//
   let  zipCode = req.query.zipCode
   let  docuMenuTest = `https://api.documenu.com/v2//restaurants/zip_code/${zipCode}?size=10&fullmenu=true&key=${process.env.NEW_API}`

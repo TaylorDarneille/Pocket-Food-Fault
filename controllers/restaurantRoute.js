@@ -10,6 +10,7 @@ const isLoggedIn = require('../middleware/isLoggedIn')
 
 //-----------GET route to render a list of the users favorite restaurants--//
 router.get('/',isLoggedIn, (req, res) => {
+    console.log('req.user: ',req.user)
     //find user restaurants data using user id and user restaurants
     db.user.findByPk(res.locals.currentUser.id, {include: [db.restaurant] })
     .then(foundUser => {
@@ -29,13 +30,13 @@ router.post('/add',isLoggedIn,(req, res) => {
     db.restaurant.findByPk(req.body.restaurantId)
     .then(foundRestaurant => {
       db.user.findByPk(res.locals.currentUser.id)
-    .then( foundUser => {
+      .then( foundUser => {
         console.log(foundUser)
-       foundRestaurant.addUser(foundUser)
-    })
-    .catch(error => {
-        console.log(error)
-    })
+        foundRestaurant.addUser(foundUser)
+      })
+      .catch(error => {
+          console.log(error)
+      })
     })
 })
 
